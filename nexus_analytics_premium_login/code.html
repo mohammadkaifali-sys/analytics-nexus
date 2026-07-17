@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexus Analytics | Secure Access</title>
+<!-- Font Inter & Geist -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#0c1324",
+                      "secondary": "#d0bcff",
+                      "on-primary": "#003640",
+                      "tertiary": "#c4c7c9",
+                      "on-secondary-fixed-variant": "#5516be",
+                      "on-surface": "#dce1fb",
+                      "tertiary-fixed": "#e0e3e5",
+                      "surface-container-highest": "#2e3447",
+                      "surface-tint": "#4cd7f6",
+                      "on-surface-variant": "#bcc9cd",
+                      "secondary-fixed": "#e9ddff",
+                      "inverse-on-surface": "#2a3043",
+                      "surface-dim": "#0c1324",
+                      "background": "#0c1324",
+                      "outline": "#869397",
+                      "tertiary-container": "#a4a7a9",
+                      "error-container": "#93000a",
+                      "on-tertiary-fixed-variant": "#444749",
+                      "on-tertiary": "#2d3133",
+                      "on-secondary": "#3c0091",
+                      "on-primary-container": "#00424f",
+                      "surface-container-low": "#151b2d",
+                      "secondary-fixed-dim": "#d0bcff",
+                      "tertiary-fixed-dim": "#c4c7c9",
+                      "inverse-surface": "#dce1fb",
+                      "surface-container-high": "#23293c",
+                      "primary-fixed": "#acedff",
+                      "on-secondary-container": "#c4abff",
+                      "surface-variant": "#2e3447",
+                      "primary-fixed-dim": "#4cd7f6",
+                      "primary": "#4cd7f6",
+                      "error": "#ffb4ab",
+                      "surface-bright": "#33394c",
+                      "on-primary-fixed-variant": "#004e5c",
+                      "on-secondary-fixed": "#23005c",
+                      "inverse-primary": "#00687a",
+                      "on-tertiary-fixed": "#191c1e",
+                      "surface-container-lowest": "#070d1f",
+                      "on-primary-fixed": "#001f26",
+                      "on-tertiary-container": "#393d3e",
+                      "surface-container": "#191f31",
+                      "on-background": "#dce1fb",
+                      "outline-variant": "#3d494c",
+                      "primary-container": "#06b6d4",
+                      "secondary-container": "#571bc1",
+                      "on-error-container": "#ffdad6",
+                      "on-error": "#690005"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "2.5rem",
+                      "container-max": "1440px",
+                      "inner-padding": "1.5rem",
+                      "gutter": "2rem",
+                      "card-gap": "1.5rem",
+                      "section-gap": "4rem",
+                      "margin-mobile": "1rem"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Inter"],
+                      "label-md": ["Geist"],
+                      "headline-lg": ["Inter"],
+                      "display": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Geist"],
+                      "headline-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(76, 215, 246, 0.4);
+        }
+        .mesh-gradient-bg {
+            background: radial-gradient(at 0% 0%, #0c1324 0%, transparent 50%),
+                        radial-gradient(at 100% 0%, #00424f 0%, transparent 50%),
+                        radial-gradient(at 100% 100%, #0c1324 0%, transparent 50%),
+                        radial-gradient(at 0% 100%, #06b6d4 0%, transparent 50%);
+            background-color: #0c1324;
+        }
+        .input-glow:focus {
+            box-shadow: 0 0 0 2px rgba(76, 215, 246, 0.2);
+            border-color: #4cd7f6;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden">
+<main class="flex flex-col md:flex-row h-screen w-full">
+<!-- Left Side: Immersive Visual -->
+<section class="hidden md:flex relative w-1/2 h-full items-center justify-center overflow-hidden border-r border-white/5">
+<!-- Animated Shader Background -->
+
+<div class="relative z-10 px-12 max-w-2xl">
+<div class="mb-8 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">System Operational</span>
+</div>
+<h1 class="font-display text-display text-white mb-6 leading-tight">
+                    Intelligence beyond <br/>
+<span class="text-primary italic">observation.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                    Nexus Analytics provides surgical precision for enterprise data flows, enabling your team to predict infrastructure shifts before they happen.
+                </p>
+<div class="mt-12 grid grid-cols-2 gap-8 border-t border-white/10 pt-12">
+<div>
+<p class="font-display text-headline-md text-white">99.99%</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Uptime SLA</p>
+</div>
+<div>
+<p class="font-display text-headline-md text-white">2.4ms</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Query Latency</p>
+</div>
+</div>
+</div>
+<!-- Abstract Visual Elements -->
+<div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]"></div>
+</section>
+<!-- Right Side: Login Content -->
+<section class="w-full md:w-1/2 h-full flex flex-col items-center justify-center p-6 md:p-12 bg-[#070d1f] relative overflow-y-auto">
+<!-- Background detail for subtle depth -->
+<div class="absolute top-0 right-0 w-full h-full opacity-20 pointer-events-none">
+<div class="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 blur-[150px]"></div>
+</div>
+<div class="w-full max-w-[440px] z-10 space-y-8" id="login-container">
+<!-- Branding -->
+<div class="text-center md:text-left flex flex-col items-center md:items-start">
+<div class="mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">insights</span>
+</div>
+<span class="font-display text-headline-md font-bold text-primary tracking-tighter">Nexus Analytics</span>
+</div>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-white mb-2">Welcome back</h2>
+<p class="text-on-surface-variant">Enter your credentials to access your dashboard.</p>
+</div>
+<!-- Login Form -->
+<div class="glass-card p-8 rounded-2xl transition-all duration-500" id="auth-card">
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<!-- Email -->
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider ml-1" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant text-[20px]">mail</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-xl py-3.5 pl-12 pr-4 text-on-surface placeholder:text-outline-variant outline-none transition-all input-glow focus:bg-surface-container-low" id="email" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-2">
+<div class="flex justify-between items-center px-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" for="password">Password</label>
+<a class="text-primary hover:text-primary-fixed transition-colors text-sm font-medium" href="#">Forgot?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant text-[20px]">lock</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-xl py-3.5 pl-12 pr-4 text-on-surface placeholder:text-outline-variant outline-none transition-all input-glow focus:bg-surface-container-low" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline-variant hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Sign In Button -->
+<button class="w-full bg-primary text-on-primary font-bold py-4 rounded-xl flex items-center justify-center gap-2 glow-hover active:scale-[0.98] transition-all duration-200">
+                            Sign In
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative my-8 flex items-center">
+<div class="flex-grow border-t border-outline-variant/20"></div>
+<span class="flex-shrink mx-4 font-label-sm text-label-sm text-outline-variant uppercase tracking-widest">Other ways to sign in</span>
+<div class="flex-grow border-t border-outline-variant/20"></div>
+</div>
+<!-- SSO Options -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 bg-surface-container-high border border-outline-variant/20 py-3 rounded-xl hover:bg-surface-container-highest transition-all group">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M12.48 10.92v3.28h7.84c-.24 1.84-.9 3.38-2.1 4.54-1.2 1.2-3.08 2.4-5.74 2.4-4.8 0-8.68-3.92-8.68-8.72s3.88-8.72 8.68-8.72c2.6 0 4.5 1.02 5.9 2.34l2.3-2.3c-2.1-1.9-4.8-3.04-8.2-3.04-6.63 0-12 5.37-12 12s5.37 12 12 12c3.57 0 6.27-1.17 8.35-3.34 2.13-2.13 2.82-5.13 2.82-7.69 0-.54-.04-1.07-.13-1.57h-11.04z" fill="#EA4335"></path>
+</svg>
+<span class="font-medium text-sm">Google</span>
+</button>
+<button class="flex items-center justify-center gap-3 bg-surface-container-high border border-outline-variant/20 py-3 rounded-xl hover:bg-surface-container-highest transition-all group">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+</svg>
+<span class="font-medium text-sm">GitHub</span>
+</button>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-4 px-4 text-outline-variant font-label-sm text-sm">
+<p>Don't have an account? <a class="text-primary font-bold hover:underline" href="#">Request access</a></p>
+<button class="flex items-center gap-1 hover:text-on-surface transition-colors" onclick="toggleOTP()">
+<span class="material-symbols-outlined text-[18px]">security</span>
+                        2FA Troubles?
+                    </button>
+</div>
+</div>
+<!-- OTP Verification View (Hidden by Default) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-6 bg-surface/80 backdrop-blur-sm" id="otp-modal">
+<div class="glass-card w-full max-w-md p-8 rounded-3xl relative overflow-hidden animate-in fade-in zoom-in duration-300">
+<!-- Decor -->
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
+<button class="absolute top-4 right-4 p-2 text-outline-variant hover:text-white rounded-lg hover:bg-white/5 transition-all" onclick="toggleOTP()">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="text-center space-y-6">
+<div class="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-primary text-[32px]">verified_user</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white">Verification required</h3>
+<p class="text-on-surface-variant">Enter the 6-digit code from your authenticator app to secure your login.</p>
+<div class="flex justify-center gap-3">
+<!-- OTP Input Mockup -->
+<input class="w-12 h-14 bg-surface-container-lowest border border-outline-variant/30 rounded-xl text-center text-xl font-bold text-primary focus:border-primary outline-none transition-all" maxlength="1" type="text"/>
+<input class="w-12 h-14 bg-surface-container-lowest border border-outline-variant/30 rounded-xl text-center text-xl font-bold text-primary focus:border-primary outline-none transition-all" maxlength="1" type="text"/>
+<input class="w-12 h-14 bg-surface-container-lowest border border-outline-variant/30 rounded-xl text-center text-xl font-bold text-primary focus:border-primary outline-none transition-all" maxlength="1" type="text"/>
+<span class="flex items-center text-outline-variant text-2xl font-bold">-</span>
+<input class="w-12 h-14 bg-surface-container-lowest border border-outline-variant/30 rounded-xl text-center text-xl font-bold text-primary focus:border-primary outline-none transition-all" maxlength="1" type="text"/>
+<input class="w-12 h-14 bg-surface-container-lowest border border-outline-variant/30 rounded-xl text-center text-xl font-bold text-primary focus:border-primary outline-none transition-all" maxlength="1" type="text"/>
+<input class="w-12 h-14 bg-surface-container-lowest border border-outline-variant/30 rounded-xl text-center text-xl font-bold text-primary focus:border-primary outline-none transition-all" maxlength="1" type="text"/>
+</div>
+<button class="w-full bg-primary text-on-primary font-bold py-4 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                            Verify Identity
+                        </button>
+<p class="text-sm text-outline-variant">
+                            Lost your device? <a class="text-primary hover:underline" href="#">Use backup codes</a>
+</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<script>
+        function toggleOTP() {
+            const modal = document.getElementById('otp-modal');
+            const isHidden = modal.classList.contains('hidden');
+            
+            if (isHidden) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        // Lightweight atmospheric cursor glow effect for the right side
+        const loginSection = document.querySelector('section:last-child');
+        loginSection.addEventListener('mousemove', (e) => {
+            const rect = loginSection.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Subtly move the background blur relative to mouse position
+            const blur = loginSection.querySelector('.bg-primary\\/10');
+            if (blur) {
+                blur.style.transform = `translate(${(x - rect.width/2) / 10}px, ${(y - rect.height/2) / 10}px)`;
+            }
+        });
+
+        // Simple OTP input behavior: auto-focus next
+        const inputs = document.querySelectorAll('#otp-modal input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', () => {
+                if (input.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && input.value.length === 0 && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+    </script>
+</body></html>

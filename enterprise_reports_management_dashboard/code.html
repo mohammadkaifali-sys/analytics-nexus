@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexus Analytics | Reports Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-border:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.1);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0c1324;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#571bc1",
+                        "primary-container": "#06b6d4",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-container-high": "#23293c",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "secondary-fixed": "#e9ddff",
+                        "on-secondary": "#3c0091",
+                        "surface-container-lowest": "#070d1f",
+                        "surface-tint": "#4cd7f6",
+                        "primary": "#4cd7f6",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "background": "#0c1324",
+                        "error-container": "#93000a",
+                        "on-primary-fixed-variant": "#004e5c",
+                        "on-secondary-fixed": "#23005c",
+                        "on-surface-variant": "#bcc9cd",
+                        "outline-variant": "#3d494c",
+                        "surface-bright": "#33394c",
+                        "surface-container-highest": "#2e3447",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "inverse-on-surface": "#2a3043",
+                        "surface-variant": "#2e3447",
+                        "tertiary-container": "#a4a7a9",
+                        "secondary": "#d0bcff",
+                        "primary-fixed": "#acedff",
+                        "on-surface": "#dce1fb",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#393d3e",
+                        "surface": "#0c1324",
+                        "on-background": "#dce1fb",
+                        "primary-fixed-dim": "#4cd7f6",
+                        "on-tertiary-fixed": "#191c1e",
+                        "surface-dim": "#0c1324",
+                        "on-primary-container": "#00424f",
+                        "on-primary": "#003640",
+                        "on-primary-fixed": "#001f26",
+                        "inverse-primary": "#00687a",
+                        "surface-container-low": "#151b2d",
+                        "inverse-surface": "#dce1fb",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-error": "#690005",
+                        "on-tertiary": "#2d3133",
+                        "tertiary": "#c4c7c9",
+                        "on-secondary-container": "#c4abff",
+                        "outline": "#869397",
+                        "surface-container": "#191f31"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "inner-padding": "1.5rem",
+                        "gutter": "2rem",
+                        "card-gap": "1.5rem",
+                        "section-gap": "4rem",
+                        "margin-mobile": "1rem",
+                        "margin-desktop": "2.5rem",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Geist"],
+                        "display": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary/30 selection:text-primary">
+<!-- Navigation Shell: SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low/80 dark:bg-surface-container-low/80 backdrop-blur-xl border-r border-outline-variant/10 shadow-sm flex flex-col p-inner-padding z-[60]">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-[20px]" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Nexus Analytics</h1>
+<p class="font-label-md text-label-md text-on-surface-variant/70">Enterprise Data</p>
+</div>
+</div>
+<nav class="space-y-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-high rounded-lg group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-high rounded-lg group" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-md text-label-md">Real-time</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary-container text-on-primary-container rounded-lg font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dns</span>
+<span class="font-label-md text-label-md">Infrastructure</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-high rounded-lg group" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Sales</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1 pt-6 border-t border-outline-variant/10">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-high rounded-lg group" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-high rounded-lg group" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<div class="mt-4 px-3">
+<button class="w-full py-2.5 bg-primary text-on-primary font-bold rounded-lg shadow-lg shadow-primary/20 hover:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    New Report
+                </button>
+</div>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-50 bg-surface/60 dark:bg-surface/60 backdrop-blur-md border-b border-outline-variant/10 flex justify-between items-center h-16 px-gutter ml-64">
+<div class="flex items-center bg-surface-container-lowest/50 rounded-full px-4 py-1.5 border border-outline-variant/10 focus-within:ring-2 focus-within:ring-primary/50 transition-all w-96">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface placeholder:text-on-surface-variant/50 w-full ml-2" placeholder="Search reports, templates, or schedules..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high text-on-surface-variant transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border border-surface"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/20 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-label-md text-on-surface font-bold">Alex Chen</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Admin</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-primary/20" data-alt="A professional headshot of a senior data analyst in a modern office, wearing a charcoal blazer, looking confidently at the camera. The background features a soft bokeh of glass partitions and subtle digital displays. The lighting is sophisticated and directional, fitting a high-end corporate dashboard aesthetic with deep blue tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPz0z5jBerW-MebpUy6PBSWZUg_QL0JMcqKlN99vq3iLmuuI3azV4OSH7n_1EEGEpG_cifDRCsoRK_tI3A4uafBPicmPwke5WP0Jdl3_bWRDGGbUsOPavZjRd7YsdG8gnt48bdQBGg2IYZT4w29Y_7WaIlXOqrkncVxmvloCRc83oE13wOcX_1AKeaDXZwKZbekxbKzZhze8MS9J6J2w49o2mvRlUmkxP_I8Jp6xxEkx5eZCtAf_Oc"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 pb-12 px-gutter min-h-screen relative overflow-hidden">
+<!-- Ambient Atmospheric Background -->
+
+<div class="max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Reports Management</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">Execute complex analysis and manage your automated data delivery ecosystem.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-surface-container border border-outline-variant/10 rounded-lg text-on-surface font-label-md hover:bg-surface-container-high transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                        Export PDF
+                    </button>
+<button class="px-4 py-2 bg-surface-container border border-outline-variant/10 rounded-lg text-on-surface font-label-md hover:bg-surface-container-high transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">grid_on</span>
+                        Export Excel
+                    </button>
+</div>
+</div>
+<!-- Quick Actions Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-card-gap mb-section-gap">
+<!-- New Report Card -->
+<div class="glass-card glow-border p-6 rounded-xl relative group cursor-pointer overflow-hidden transition-all duration-300">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px] text-primary">add_chart</span>
+</div>
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 border border-primary/20">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">add</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">New Report</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Create a bespoke analytical overview from raw data streams.</p>
+<button class="px-5 py-2 bg-primary text-on-primary font-bold rounded-lg hover:scale-95 transition-transform">Create Now</button>
+</div>
+<!-- Schedule Report Card -->
+<div class="glass-card glow-border p-6 rounded-xl relative group cursor-pointer overflow-hidden transition-all duration-300">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px] text-secondary">schedule_send</span>
+</div>
+<div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4 border border-secondary/20">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">timer</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Schedule Report</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Automate your reporting workflow with cron-based triggers.</p>
+<button class="px-5 py-2 bg-surface-container border border-outline-variant/20 text-secondary font-bold rounded-lg hover:bg-secondary/10 transition-colors">Set Schedule</button>
+</div>
+<!-- Manage Templates Card -->
+<div class="glass-card glow-border p-6 rounded-xl relative group cursor-pointer overflow-hidden transition-all duration-300">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px] text-tertiary">dashboard_customize</span>
+</div>
+<div class="w-12 h-12 bg-tertiary/10 rounded-lg flex items-center justify-center mb-4 border border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">folder_managed</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Manage Templates</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Standardize your metrics across the entire enterprise organization.</p>
+<button class="px-5 py-2 bg-surface-container border border-outline-variant/20 text-tertiary font-bold rounded-lg hover:bg-tertiary/10 transition-colors">View Library</button>
+</div>
+</section>
+<!-- Recent Reports Table -->
+<section class="mb-section-gap">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+                        Recent Reports
+                        <span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[12px] font-bold">LIVE</span>
+</h3>
+<button class="text-primary font-label-md hover:underline">View All History</button>
+</div>
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-high/50 border-b border-outline-variant/10">
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Report Name</th>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Type</th>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Created By</th>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Last Modified</th>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Status</th>
+<th class="px-6 py-4 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Q4 Global Sales Pipeline</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="bg-secondary/10 text-secondary border border-secondary/20 px-2.5 py-0.5 rounded-full text-[12px] font-bold uppercase">Sales</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-[10px] font-bold">JD</div>
+<span class="font-body-md text-body-md text-on-surface-variant">Jane Doe</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">2 mins ago</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-primary font-medium text-body-md">Ready</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors" title="Download PDF"><span class="material-symbols-outlined text-[20px]">download</span></button>
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors" title="Email Report"><span class="material-symbols-outlined text-[20px]">mail</span></button>
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors" title="Share link"><span class="material-symbols-outlined text-[20px]">share</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error">analytics</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Monthly Financial Consolidation</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="bg-error/10 text-error border border-error/20 px-2.5 py-0.5 rounded-full text-[12px] font-bold uppercase">Finance</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-[10px] font-bold">AC</div>
+<span class="font-body-md text-body-md text-on-surface-variant">Alex Chen</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">1 hour ago</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
+<span class="font-medium text-body-md">Processing</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1 opacity-40">
+<button class="p-2 cursor-not-allowed opacity-20" disabled=""><span class="material-symbols-outlined text-[20px]">download</span></button>
+<button class="p-2 cursor-not-allowed opacity-20" disabled=""><span class="material-symbols-outlined text-[20px]">mail</span></button>
+<button class="p-2 cursor-not-allowed opacity-20" disabled=""><span class="material-symbols-outlined text-[20px]">share</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">dns</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Server Latency Audit - EU West</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="bg-primary-container/10 text-primary-container border border-primary-container/20 px-2.5 py-0.5 rounded-full text-[12px] font-bold uppercase">Infra</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-[10px] font-bold">SY</div>
+<span class="font-body-md text-body-md text-on-surface-variant">Sam Young</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">4 hours ago</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-primary font-medium text-body-md">Ready</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors"><span class="material-symbols-outlined text-[20px]">download</span></button>
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors"><span class="material-symbols-outlined text-[20px]">mail</span></button>
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors"><span class="material-symbols-outlined text-[20px]">share</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-surface-container-low border-t border-outline-variant/10 px-6 py-4 flex items-center justify-between">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Showing 1-10 of 42 reports</p>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg hover:bg-surface-container-high border border-outline-variant/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-surface-container-high border border-outline-variant/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Sections: Schedules and Templates -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-card-gap">
+<!-- Scheduled Reports -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Scheduled Deliveries</h3>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                            New Schedule
+                        </button>
+</div>
+<div class="space-y-3">
+<div class="glass-card p-4 rounded-xl flex items-center justify-between group hover:border-primary/30 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary border border-secondary/10">
+<span class="material-symbols-outlined">event_repeat</span>
+</div>
+<div>
+<h4 class="font-body-md text-body-md text-on-surface font-bold">Daily Revenue Snapshot</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Every day at 08:00 AM • 14 Recipients</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface transition-colors">more_vert</button>
+</div>
+</div>
+<div class="glass-card p-4 rounded-xl flex items-center justify-between group hover:border-primary/30 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary border border-secondary/10">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<div>
+<h4 class="font-body-md text-body-md text-on-surface font-bold">Monthly Board Audit</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">1st of every month • PDF &amp; Excel</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface transition-colors">more_vert</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Report Templates Grid -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Premium Templates</h3>
+<button class="text-primary font-label-md hover:underline">Marketplace</button>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="glass-card p-4 rounded-xl hover:bg-surface-container transition-all cursor-pointer border-l-4 border-l-primary group">
+<h4 class="font-label-md text-label-md text-on-surface font-bold mb-1 group-hover:text-primary transition-colors">Monthly Financial Summary</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant line-clamp-1">Detailed P&amp;L and Balance sheets.</p>
+</div>
+<div class="glass-card p-4 rounded-xl hover:bg-surface-container transition-all cursor-pointer border-l-4 border-l-secondary group">
+<h4 class="font-label-md text-label-md text-on-surface font-bold mb-1 group-hover:text-secondary transition-colors">Quarterly Sales Audit</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant line-clamp-1">Territory performance &amp; CRM sync.</p>
+</div>
+<div class="glass-card p-4 rounded-xl hover:bg-surface-container transition-all cursor-pointer border-l-4 border-l-error group">
+<h4 class="font-label-md text-label-md text-on-surface font-bold mb-1 group-hover:text-error transition-colors">Churn Risk Analysis</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant line-clamp-1">Predictive model results for SaaS.</p>
+</div>
+<div class="glass-card p-4 rounded-xl hover:bg-surface-container transition-all cursor-pointer border-l-4 border-l-tertiary group">
+<h4 class="font-label-md text-label-md text-on-surface font-bold mb-1 group-hover:text-tertiary transition-colors">Infra Cost Optimizer</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant line-clamp-1">AWS/GCP efficiency reporting.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interactions for glass cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

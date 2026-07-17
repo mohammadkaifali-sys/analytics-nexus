@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexus Analytics | AI Business Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#06b6d4",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "surface": "#0c1324",
+                        "on-primary-container": "#00424f",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-dim": "#0c1324",
+                        "on-surface-variant": "#bcc9cd",
+                        "surface-container-highest": "#2e3447",
+                        "primary-fixed-dim": "#4cd7f6",
+                        "primary": "#4cd7f6",
+                        "background": "#0c1324",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-tertiary": "#2d3133",
+                        "on-secondary-container": "#c4abff",
+                        "on-background": "#dce1fb",
+                        "on-primary": "#003640",
+                        "inverse-on-surface": "#2a3043",
+                        "surface-container-lowest": "#070d1f",
+                        "outline-variant": "#3d494c",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#151b2d",
+                        "secondary-fixed": "#e9ddff",
+                        "primary-fixed": "#acedff",
+                        "on-secondary": "#3c0091",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "tertiary-container": "#a4a7a9",
+                        "surface-variant": "#2e3447",
+                        "surface-container": "#191f31",
+                        "error-container": "#93000a",
+                        "tertiary": "#c4c7c9",
+                        "on-secondary-fixed": "#23005c",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#00687a",
+                        "surface-tint": "#4cd7f6",
+                        "on-primary-fixed": "#001f26",
+                        "secondary": "#d0bcff",
+                        "on-primary-fixed-variant": "#004e5c",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "outline": "#869397",
+                        "secondary-container": "#571bc1",
+                        "inverse-surface": "#dce1fb",
+                        "on-surface": "#dce1fb",
+                        "surface-bright": "#33394c",
+                        "on-tertiary-fixed": "#191c1e",
+                        "surface-container-high": "#23293c",
+                        "on-tertiary-container": "#393d3e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "inner-padding": "1.5rem",
+                        "card-gap": "1.5rem",
+                        "margin-desktop": "2.5rem",
+                        "container-max": "1440px",
+                        "section-gap": "4rem",
+                        "gutter": "2rem",
+                        "margin-mobile": "1rem"
+                    },
+                    "fontFamily": {
+                        "display": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #020617;
+            color: #dce1fb;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(76, 215, 246, 0.3);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .glow-cyan {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+        }
+
+        .animate-subtle-glow {
+            animation: pulse-glow 4s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 5px rgba(6, 182, 212, 0.1); }
+            100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); }
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .risk-matrix-dot {
+            transition: transform 0.2s ease;
+        }
+        .risk-matrix-dot:hover {
+            transform: scale(1.5);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="custom-scrollbar">
+<!-- Sidebar Navigation (SideNavBar) -->
+<aside class="hidden lg:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest/90 backdrop-blur-2xl border-r border-white/5 py-inner-padding z-[60]">
+<div class="px-6 mb-10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-xl">terminal</span>
+</div>
+<h1 class="text-headline-md font-headline-md text-primary font-bold tracking-tighter">Nexus AI</h1>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest mt-1 opacity-60">Precision-Glass Hybrid Engine</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<!-- Command Center is Active -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-primary/10 text-primary border-r-4 border-primary hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="text-label-md font-label-md">Command Center</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="text-label-md font-label-md">Market Intel</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">security</span>
+<span class="text-label-md font-label-md">Risk Analysis</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span class="text-label-md font-label-md">Optimization</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-label-md font-label-md">Reports</span>
+</a>
+</nav>
+<div class="mt-auto px-4 space-y-4">
+<button class="w-full py-3 bg-primary text-on-primary font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
+                Upgrade to Pro
+            </button>
+<div class="pt-4 border-t border-white/5">
+<a class="flex items-center gap-4 px-4 py-2 text-on-surface-variant hover:text-on-surface" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="text-label-md font-label-md">Support</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-2 text-on-surface-variant hover:text-on-surface" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-label-md font-label-md">Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:ml-64 min-h-screen">
+<!-- TopAppBar (Sticky) -->
+<header class="sticky top-0 z-50 h-20 w-full flex justify-between items-center px-margin-desktop bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-2xl">
+<div class="flex items-center gap-8 flex-1">
+<div class="hidden md:flex items-center bg-surface-container-low border border-white/10 rounded-full px-4 py-2 w-full max-w-xl group focus-within:border-primary/50 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant mr-3 group-focus-within:text-primary">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full text-on-surface placeholder:text-on-surface-variant/50" placeholder="AI Command Center: Ask Nexus about your business..." type="text"/>
+<span class="text-[10px] bg-white/10 px-2 py-1 rounded text-on-surface-variant font-mono">⌘K</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden xl:flex items-center gap-6 mr-6">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="#">Predictions</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="#">Risk Matrix</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="#">Assets</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="A professional executive portrait of a high-level business leader in a modern, glass-walled office environment. The lighting is crisp and dramatic, with cool blue tones reflecting the Nexus Analytics brand. The user has a confident expression, wearing high-end business attire. The background is softly blurred to emphasize the profile, fitting a premium corporate dashboard aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKWcSo3gdPTyS8lPgDitv6aAanhwXD91mOOkvLiCdktODU87BQKDfzDqxzv_Z__EUlPav0AIkLp5K8jHvWHOwKA2oSE8B25IcGpLnG6RIq7-JQ1gQaLCrDMNRxoKAGyCme4vOHmcEnOR-lY2K9FdJo9c62ikTMNOctF3Xp5A_Nu3EPF2hsa4iaphFn8YTFaHAU1mRo_CsJSCjIfEbvH5QmVJQUh2X0enWEbeYpyQ9xukm4ZDRAehw-"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-8 max-w-container-max mx-auto space-y-card-gap">
+<!-- 1. AI Executive Summary Section -->
+<section class="glass-panel rounded-2xl p-inner-padding relative overflow-hidden group">
+<!-- Background Shader Placeholder -->
+
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-6">
+<div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center animate-subtle-glow">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-label-sm font-label-sm text-primary uppercase tracking-widest">Nexus Intelligence Summary</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+</div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Revenue is pacing 12% ahead of target, but inventory risks in EMEA require immediate attention.</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-2 max-w-3xl">
+                            Our predictive models indicate a 88% probability of achieving Q3 targets. However, logistics disruptions in the Suez canal are impacting furniture lead times by 14 days. I recommend shifting 20% of EMEA supply chain volume to air freight for high-margin items.
+                        </p>
+</div>
+<button class="px-6 py-3 rounded-xl border border-primary/30 hover:bg-primary/10 transition-all font-label-md text-label-md text-primary flex items-center gap-2">
+                        View Detailed Forecast
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- 2. Proactive Insight Cards -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-card-gap">
+<!-- Card 1: Revenue Surge -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="p-2 rounded-lg bg-green-500/10 text-green-400">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<span class="text-label-sm font-label-sm text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full">+18%</span>
+</div>
+<div>
+<h3 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter">Revenue Surge</h3>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">$4.2M <span class="text-body-md text-on-surface-variant font-normal">this week</span></p>
+</div>
+<div class="h-10 w-full mt-2 bg-white/5 rounded relative overflow-hidden">
+<!-- Simple CSS Sparkline representation -->
+<div class="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/40 h-full w-[80%] rounded-r"></div>
+</div>
+</div>
+<!-- Card 2: Profit Warning -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-4 border-error/20">
+<div class="flex justify-between items-start">
+<div class="p-2 rounded-lg bg-error/10 text-error">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<span class="text-label-sm font-label-sm text-error bg-error/10 px-2 py-0.5 rounded-full">High Risk</span>
+</div>
+<div>
+<h3 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter">Profit Warning</h3>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">-6.4% <span class="text-body-md text-on-surface-variant font-normal">Furniture Cat.</span></p>
+</div>
+<p class="text-xs text-error/80 italic">Declining profit margins due to rising material costs.</p>
+</div>
+<!-- Card 3: Performance Lead -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="p-2 rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">stars</span>
+</div>
+<span class="text-label-sm font-label-sm text-primary bg-primary/10 px-2 py-0.5 rounded-full">Top Performer</span>
+</div>
+<div>
+<h3 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter">Performance Lead</h3>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">West Region <span class="text-body-md text-on-surface-variant font-normal">92% Index</span></p>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1.5 mt-2">
+<div class="bg-primary h-1.5 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<!-- Card 4: Anomaly Detected -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="p-2 rounded-lg bg-secondary/10 text-secondary">
+<span class="material-symbols-outlined">shutter_speed</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded-full">Detected</span>
+</div>
+<div>
+<h3 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter">Anomaly Detected</h3>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">Sector 7 <span class="text-body-md text-on-surface-variant font-normal">+42% Costs</span></p>
+</div>
+<p class="text-xs text-on-surface-variant italic">Unexpected spike in operational costs in Sector 7.</p>
+</div>
+</section>
+<!-- 3. Intelligence Visualizations (Bento Style) -->
+<section class="grid grid-cols-1 xl:grid-cols-3 gap-card-gap">
+<!-- Future Sales Forecast (Large Card) -->
+<div class="xl:col-span-2 glass-card rounded-2xl p-inner-padding">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Future Sales Forecast</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Historical Trend vs. AI Prediction (Confidence Level: 94%)</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container-high px-3 py-1 rounded text-xs text-on-surface-variant hover:text-on-surface transition-colors">Daily</button>
+<button class="bg-primary/20 px-3 py-1 rounded text-xs text-primary border border-primary/30">Weekly</button>
+<button class="bg-surface-container-high px-3 py-1 rounded text-xs text-on-surface-variant hover:text-on-surface transition-colors">Monthly</button>
+</div>
+</div>
+<div class="h-64 w-full relative flex items-end justify-between px-4">
+<!-- Chart Lines (Simulated with CSS) -->
+<div class="absolute inset-x-4 inset-y-0 border-l border-b border-white/5"></div>
+<!-- Legend -->
+<div class="absolute top-0 right-4 flex gap-4 text-[10px] uppercase tracking-widest">
+<div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-white/20"></span> Historical</div>
+<div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-primary"></span> Predicted</div>
+</div>
+<!-- Bar Visual Mockup -->
+<div class="w-10 bg-white/10 rounded-t h-[40%] transition-all hover:bg-white/20"></div>
+<div class="w-10 bg-white/10 rounded-t h-[55%] transition-all hover:bg-white/20"></div>
+<div class="w-10 bg-white/10 rounded-t h-[50%] transition-all hover:bg-white/20"></div>
+<div class="w-10 bg-white/10 rounded-t h-[65%] transition-all hover:bg-white/20"></div>
+<div class="w-10 bg-white/10 rounded-t h-[60%] transition-all hover:bg-white/20"></div>
+<!-- AI Transition Start -->
+<div class="w-10 bg-gradient-to-t from-primary/20 to-primary rounded-t h-[75%] animate-subtle-glow"></div>
+<div class="w-10 bg-gradient-to-t from-primary/20 to-primary rounded-t h-[82%] animate-subtle-glow"></div>
+<div class="w-10 bg-gradient-to-t from-primary/20 to-primary rounded-t h-[90%] animate-subtle-glow"></div>
+<div class="w-10 bg-gradient-to-t from-primary/20 to-primary rounded-t h-[88%] animate-subtle-glow"></div>
+</div>
+<div class="mt-4 flex justify-between px-4 text-xs text-on-surface-variant font-mono opacity-50">
+<span>MAY</span><span>JUN</span><span>JUL</span><span>AUG</span><span>SEP</span><span class="text-primary font-bold">OCT (PROJ)</span><span class="text-primary">NOV</span><span class="text-primary">DEC</span>
+</div>
+</div>
+<!-- Risk Matrix -->
+<div class="glass-card rounded-2xl p-inner-padding">
+<div class="mb-8">
+<h3 class="text-headline-md font-headline-md text-on-surface">Risk Matrix</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Strategic Impact vs. Probability</p>
+</div>
+<div class="relative h-64 w-full bg-surface-container-lowest/50 rounded-xl border border-white/5 overflow-hidden">
+<!-- Grid Lines -->
+<div class="absolute inset-0 grid grid-cols-2 grid-rows-2">
+<div class="border-r border-b border-white/5 bg-red-500/5"></div>
+<div class="border-b border-white/5 bg-orange-500/5"></div>
+<div class="border-r border-white/5 bg-yellow-500/5"></div>
+<div class="bg-green-500/5"></div>
+</div>
+<!-- Axis Labels -->
+<span class="absolute -left-12 top-1/2 -rotate-90 text-[10px] text-on-surface-variant uppercase tracking-widest font-mono">Likelihood</span>
+<span class="absolute bottom-1 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant uppercase tracking-widest font-mono">Impact</span>
+<!-- Risk Dots -->
+<div class="risk-matrix-dot absolute top-[15%] right-[20%] w-4 h-4 bg-error rounded-full ring-4 ring-error/20 cursor-help" title="Supply Chain Disruption"></div>
+<div class="risk-matrix-dot absolute top-[40%] right-[45%] w-3 h-3 bg-secondary rounded-full ring-4 ring-secondary/20 cursor-help" title="Competitor Pricing Change"></div>
+<div class="risk-matrix-dot absolute top-[70%] left-[20%] w-2.5 h-2.5 bg-primary rounded-full ring-4 ring-primary/20 cursor-help" title="IT Maintenance Window"></div>
+<div class="risk-matrix-dot absolute top-[25%] left-[60%] w-3.5 h-3.5 bg-orange-400 rounded-full ring-4 ring-orange-400/20 cursor-help" title="Regulatory Shift"></div>
+</div>
+<ul class="mt-6 space-y-3">
+<li class="flex items-center gap-3 text-xs text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="flex-1">Supply Chain Disruption (EMEA)</span>
+<span class="font-bold text-on-surface">Critical</span>
+</li>
+<li class="flex items-center gap-3 text-xs text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="flex-1">Market Sentiment Dip</span>
+<span class="font-bold text-on-surface">Moderate</span>
+</li>
+</ul>
+</div>
+</section>
+<!-- 4. Strategic Recommendations -->
+<section class="glass-panel rounded-2xl overflow-hidden">
+<div class="p-6 border-b border-white/10 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<h3 class="text-headline-md font-headline-md text-on-surface">Strategic Recommendations</h3>
+</div>
+<span class="text-xs text-on-surface-variant bg-white/5 px-3 py-1 rounded-full">Updated 12m ago</span>
+</div>
+<div class="divide-y divide-white/5">
+<!-- Rec 1 -->
+<div class="p-6 flex items-start gap-6 hover:bg-white/5 transition-colors group cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+</div>
+<div class="flex-1">
+<h4 class="text-label-md font-label-md text-on-surface group-hover:text-primary transition-colors">Optimize logistics for APAC region</h4>
+<p class="text-body-md text-on-surface-variant mt-1">Consolidate shipping lanes between Singapore and Tokyo to reduce overhead by 12%. Potential cost savings estimated at <span class="text-primary font-bold">$2.4M</span> annually.</p>
+</div>
+<button class="bg-primary text-on-primary text-xs font-bold px-4 py-2 rounded-lg hover:brightness-110">Execute Action</button>
+</div>
+<!-- Rec 2 -->
+<div class="p-6 flex items-start gap-6 hover:bg-white/5 transition-colors group cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary">inventory_2</span>
+</div>
+<div class="flex-1">
+<h4 class="text-label-md font-label-md text-on-surface group-hover:text-secondary transition-colors">Rebalance Inventory: Smart Devices</h4>
+<p class="text-body-md text-on-surface-variant mt-1">Inventory levels for 'Nexus Hub V2' are 30% above forecast. Pivot promotional budget from 'Legacy Pro' to clear surplus stock in Q4.</p>
+</div>
+<button class="border border-white/20 text-on-surface text-xs font-bold px-4 py-2 rounded-lg hover:bg-white/10 transition-colors">Review Plan</button>
+</div>
+<!-- Rec 3 -->
+<div class="p-6 flex items-start gap-6 hover:bg-white/5 transition-colors group cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-green-400">campaign</span>
+</div>
+<div class="flex-1">
+<h4 class="text-label-md font-label-md text-on-surface group-hover:text-green-400 transition-colors">Dynamic Pricing: Enterprise Tier</h4>
+<p class="text-body-md text-on-surface-variant mt-1">AI signals indicate 15% lower price sensitivity in North American tech hubs. Adjusting license fees by 4.5% could yield <span class="text-green-400 font-bold">$850k</span> additional profit.</p>
+</div>
+<button class="border border-white/20 text-on-surface text-xs font-bold px-4 py-2 rounded-lg hover:bg-white/10 transition-colors">View Analysis</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Spacer -->
+<footer class="p-8 text-center text-[10px] text-on-surface-variant opacity-40 uppercase tracking-[0.2em]">
+            © 2024 Nexus Intelligence Systems • Proprietary Glass Hybrid Engine v4.2
+        </footer>
+</main>
+<!-- Contextual FAB (Only on Mobile-ish viewports or specific flows) -->
+<button class="fixed bottom-8 right-8 w-16 h-16 bg-primary rounded-full shadow-2xl flex items-center justify-center text-on-primary z-[70] lg:hidden hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</button>
+<script>
+        // Micro-interactions for the Search Bar focus
+        const searchInput = document.querySelector('input[type="text"]');
+        const searchContainer = searchInput.parentElement;
+        
+        searchInput.addEventListener('focus', () => {
+            searchContainer.classList.add('shadow-[0_0_15px_rgba(76,215,246,0.3)]');
+        });
+        
+        searchInput.addEventListener('blur', () => {
+            searchContainer.classList.remove('shadow-[0_0_15px_rgba(76,215,246,0.3)]');
+        });
+
+        // Simple animation logic for chart data (reveal on scroll)
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-reveal');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(card => observer.observe(card));
+    </script>
+</body></html>

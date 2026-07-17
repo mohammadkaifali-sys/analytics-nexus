@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexus Analytics | Predictive Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .glow-border {
+      position: relative;
+    }
+    .glow-border::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(139, 92, 246, 0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .mesh-gradient-bg {
+      background-color: #020617;
+      background-image: 
+        radial-gradient(at 0% 0%, hsla(188, 92%, 43%, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(258, 90%, 66%, 0.1) 0px, transparent 50%);
+    }
+    .dashed-line-glow {
+      stroke-dasharray: 8 4;
+      filter: drop-shadow(0 0 4px rgba(6, 182, 212, 0.6));
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 10px;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "#4cd7f6",
+            "on-error-container": "#ffdad6",
+            "surface-container-lowest": "#070d1f",
+            "on-primary-fixed-variant": "#004e5c",
+            "secondary-container": "#571bc1",
+            "surface-variant": "#2e3447",
+            "on-tertiary-fixed": "#191c1e",
+            "outline-variant": "#3d494c",
+            "on-tertiary-fixed-variant": "#444749",
+            "on-secondary-fixed": "#23005c",
+            "inverse-surface": "#dce1fb",
+            "on-secondary": "#3c0091",
+            "tertiary-fixed-dim": "#c4c7c9",
+            "inverse-on-surface": "#2a3043",
+            "surface-container-low": "#151b2d",
+            "surface-bright": "#33394c",
+            "on-secondary-container": "#c4abff",
+            "on-tertiary": "#2d3133",
+            "tertiary-fixed": "#e0e3e5",
+            "outline": "#869397",
+            "surface-container-high": "#23293c",
+            "on-surface": "#dce1fb",
+            "tertiary-container": "#a4a7a9",
+            "tertiary": "#c4c7c9",
+            "secondary-fixed": "#e9ddff",
+            "on-secondary-fixed-variant": "#5516be",
+            "error-container": "#93000a",
+            "surface-container": "#191f31",
+            "error": "#ffb4ab",
+            "secondary-fixed-dim": "#d0bcff",
+            "on-primary": "#003640",
+            "primary-fixed": "#acedff",
+            "background": "#0c1324",
+            "primary-fixed-dim": "#4cd7f6",
+            "on-tertiary-container": "#393d3e",
+            "on-background": "#dce1fb",
+            "surface-dim": "#0c1324",
+            "inverse-primary": "#00687a",
+            "on-error": "#690005",
+            "on-surface-variant": "#bcc9cd",
+            "primary": "#4cd7f6",
+            "surface-container-highest": "#2e3447",
+            "on-primary-fixed": "#001f26",
+            "on-primary-container": "#00424f",
+            "primary-container": "#06b6d4",
+            "surface": "#0c1324",
+            "secondary": "#d0bcff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "card-gap": "1.5rem",
+            "container-max": "1440px",
+            "section-gap": "4rem",
+            "margin-mobile": "1rem",
+            "inner-padding": "1.5rem",
+            "gutter": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          "fontFamily": {
+            "display": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "label-sm": ["Geist"],
+            "label-md": ["Geist"],
+            "headline-lg": ["Inter"]
+          },
+          "fontSize": {
+            "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body-md mesh-gradient-bg min-h-screen flex">
+<!-- Side Navigation -->
+<aside class="hidden md:flex h-screen w-64 flex-col border-r border-outline-variant/10 bg-surface-container-low sticky top-0">
+<div class="flex flex-col gap-8 py-6 px-4 h-full">
+<div class="px-2">
+<h1 class="font-display text-headline-md font-bold text-primary">Sales Cloud</h1>
+<p class="text-on-surface-variant font-label-md text-label-md">Enterprise Tier</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all rounded-lg font-label-md text-label-md active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container rounded-lg font-bold font-label-md text-label-md active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span>Real-time</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all rounded-lg font-label-md text-label-md active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">cloud_done</span>
+<span>Infrastructure</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all rounded-lg font-label-md text-label-md active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Sales</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant/10 pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">description</span>
+<span>Docs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span>Support</span>
+</a>
+<button class="mt-4 bg-primary text-on-primary py-2.5 px-4 rounded-lg font-bold text-label-md hover:brightness-110 active:scale-95 transition-all">
+          Export Report
+        </button>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- Top App Bar -->
+<header class="w-full sticky top-0 z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm flex justify-between items-center h-16 px-margin-desktop">
+<div class="flex items-center gap-8">
+<div class="font-display text-headline-md font-bold text-primary tracking-tighter">Nexus Analytics</div>
+<div class="hidden lg:flex items-center gap-6">
+<a class="text-on-surface-variant font-medium font-display text-body-md hover:bg-white/5 px-2 py-1 transition-colors" href="#">Dashboards</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-display text-body-md transition-colors" href="#">Forecasts</a>
+<a class="text-on-surface-variant font-medium font-display text-body-md hover:bg-white/5 px-2 py-1 transition-colors" href="#">Insights</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-surface-container border border-outline-variant/20 rounded-full px-4 py-1.5 focus-within:ring-2 ring-primary/30 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface w-48 ml-2" placeholder="Search data points..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-white/5 rounded-full transition-colors material-symbols-outlined">notifications</button>
+<button class="p-2 text-on-surface-variant hover:bg-white/5 rounded-full transition-colors material-symbols-outlined">settings</button>
+<img class="w-8 h-8 rounded-full border border-primary/20 bg-surface-container-high object-cover" data-alt="A professional headshot of a high-level executive user with a confident smile, set against a blurred corporate backdrop with neutral tones and soft blue accent lighting, reflecting a premium enterprise aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ-E8gfz_5VzcraODHZrBY1aKlL3gyJX-V1YO99G8zXSC9g7kY5tMJD5l5xm9RLlRAMN80G2BNdHoblWKNLCOCT-4LgxfOt9Db5GL1r7MM6NRbNQFYgRjVbHao8EzLlzbWBzQN2cG5mTiyY3L5X8zodusUesXr8ANc3cgMx5vPZN07iF-s5x915sogQVqHbvBihR9WVBeIba8x4NuDqYj4CgcCY-8B9eg44aCy1kdQcAdJEY441_qZ"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="p-margin-desktop space-y-card-gap">
+<!-- Page Header & Filters -->
+<section class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+<div>
+<h2 class="font-display text-headline-lg text-on-surface tracking-tight">Predictive Intelligence</h2>
+<p class="text-on-surface-variant font-body-md mt-1">Fiscal Year 2024–2025 AI-Driven Projections</p>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<div class="flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase ml-1">Timeframe</span>
+<select class="bg-surface-container-low border-outline-variant/20 text-on-surface rounded-lg py-1.5 pl-3 pr-8 focus:ring-primary focus:border-primary">
+<option>Q1 (Current)</option>
+<option>Q2</option>
+<option>H1</option>
+<option>FY 2025</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase ml-1">Model Type</span>
+<select class="bg-surface-container-low border-outline-variant/20 text-on-surface rounded-lg py-1.5 pl-3 pr-8 focus:ring-primary focus:border-primary">
+<option>AI-Optimized</option>
+<option>Aggressive</option>
+<option>Conservative</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase ml-1">Confidence</span>
+<div class="flex items-center gap-2 bg-surface-container-low border border-outline-variant/20 rounded-lg px-3 py-1.5">
+<span class="text-primary material-symbols-outlined text-[18px]">verified</span>
+<span class="text-on-surface font-medium">94%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- KPI Top Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-card-gap">
+<!-- Projected Revenue -->
+<div class="glass-card glow-border rounded-xl p-inner-padding flex flex-col justify-between h-40">
+<div>
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Projected Revenue</span>
+<span class="text-primary font-label-md text-label-md">+/- 4%</span>
+</div>
+<div class="font-display text-headline-md text-on-surface mt-1">$48.2M</div>
+</div>
+<div class="w-full h-12 mt-2">
+<svg class="w-full h-full" viewbox="0 0 100 30">
+<path d="M0,25 Q15,22 30,20 T60,10 T90,5 T100,0" fill="none" stroke="#4cd7f6" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0,25 Q15,22 30,20 T60,10 T90,5 T100,0 L100,30 L0,30 Z" fill="url(#grad-blue)" opacity="0.1"></path>
+<defs>
+<lineargradient id="grad-blue" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#4cd7f6;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#4cd7f6;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</div>
+<!-- Forecasted Profit -->
+<div class="glass-card glow-border rounded-xl p-inner-padding flex flex-col justify-between h-40">
+<div>
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Forecasted Profit</span>
+<span class="text-primary font-label-md text-label-md">+/- 3.2%</span>
+</div>
+<div class="font-display text-headline-md text-on-surface mt-1">$16.4M</div>
+</div>
+<div class="w-full h-12 mt-2">
+<svg class="w-full h-full" viewbox="0 0 100 30">
+<path d="M0,28 Q20,25 40,26 T80,12 T100,8" fill="none" stroke="#8B5CF6" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0,28 Q20,25 40,26 T80,12 T100,8 L100,30 L0,30 Z" fill="url(#grad-purple)" opacity="0.1"></path>
+<defs>
+<lineargradient id="grad-purple" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</div>
+<!-- Predicted Customer Growth -->
+<div class="glass-card glow-border rounded-xl p-inner-padding flex flex-col justify-between h-40">
+<div>
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Cust. Growth</span>
+<span class="text-primary font-label-md text-label-md">+/- 2.1%</span>
+</div>
+<div class="font-display text-headline-md text-on-surface mt-1">+22%</div>
+</div>
+<div class="w-full h-12 mt-2">
+<svg class="w-full h-full" viewbox="0 0 100 30">
+<path d="M0,20 Q25,22 50,15 T100,5" fill="none" stroke="#4cd7f6" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0,20 Q25,22 50,15 T100,5 L100,30 L0,30 Z" fill="url(#grad-blue)" opacity="0.1"></path>
+</svg>
+</div>
+</div>
+<!-- Estimated Market Share -->
+<div class="glass-card glow-border rounded-xl p-inner-padding flex flex-col justify-between h-40">
+<div>
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Market Share</span>
+<span class="text-primary font-label-md text-label-md">+/- 1.5%</span>
+</div>
+<div class="font-display text-headline-md text-on-surface mt-1">14.2%</div>
+</div>
+<div class="w-full h-12 mt-2">
+<svg class="w-full h-full" viewbox="0 0 100 30">
+<path d="M0,25 Q20,20 40,22 T70,18 T100,15" fill="none" stroke="#8B5CF6" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0,25 Q20,20 40,22 T70,18 T100,15 L100,30 L0,30 Z" fill="url(#grad-purple)" opacity="0.1"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Main Section: Charts -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-card-gap">
+<!-- Revenue & Profit Forecast (Left) -->
+<div class="lg:col-span-2 glass-card rounded-xl p-inner-padding">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline-md text-on-surface">Revenue & Profit Forecast</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-1 bg-primary"></div>
+<span class="text-label-sm text-on-surface-variant uppercase">Historical</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-1 border-t-2 border-dashed border-primary"></div>
+<span class="text-label-sm text-on-surface-variant uppercase">AI Forecast</span>
+</div>
+</div>
+</div>
+<div class="h-80 w-full relative">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 1000 400">
+<!-- Grid Lines -->
+<g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+<line x1="0" x2="1000" y1="100" y2="100"></line>
+<line x1="0" x2="1000" y1="200" y2="200"></line>
+<line x1="0" x2="1000" y1="300" y2="300"></line>
+</g>
+<!-- Confidence Interval Band -->
+<path d="M500,150 Q625,120 750,140 T1000,100 L1000,200 T750,220 Q625,200 500,230 Z" fill="rgba(76, 215, 246, 0.05)"></path>
+<!-- Historical Line -->
+<path d="M0,350 L100,320 L200,340 L300,280 L400,300 L500,240" fill="none" stroke="#4cd7f6" stroke-linejoin="round" stroke-width="3"></path>
+<!-- Forecast Line (Dashed Glow) -->
+<path class="dashed-line-glow" d="M500,240 L600,200 L700,210 L800,150 L900,170 L1000,120" fill="none" stroke="#4cd7f6" stroke-linejoin="round" stroke-width="3"></path>
+<!-- Profit Line -->
+<path d="M0,380 L100,370 L200,375 L300,350 L400,360 L500,340" fill="none" opacity="0.6" stroke="#8B5CF6" stroke-width="2"></path>
+<path d="M500,340 L600,320 L700,330 L800,290 L900,310 L1000,270" fill="none" opacity="0.6" stroke="#8B5CF6" stroke-dasharray="6,4" stroke-width="2"></path>
+<!-- Divider line for future -->
+<line stroke="rgba(255,255,255,0.1)" stroke-dasharray="4,4" x1="500" x2="500" y1="0" y2="400"></line>
+<text fill="rgba(255,255,255,0.4)" font-family="Geist" font-size="12" x="510" y="20">NOW</text>
+</svg>
+<div class="absolute bottom-0 left-0 right-0 flex justify-between text-label-sm text-on-surface-variant uppercase px-2 pt-4">
+<span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span class="text-primary font-bold">Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span>
+</div>
+</div>
+</div>
+<!-- Demand Prediction (Right) -->
+<div class="glass-card rounded-xl p-inner-padding">
+<h3 class="font-headline-md text-on-surface mb-6">Demand Spikes</h3>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between items-center text-label-md">
+<span class="text-on-surface">SaaS Enterprise</span>
+<span class="text-primary">+42%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-label-md">
+<span class="text-on-surface">Data Infrastructure</span>
+<span class="text-secondary">+28%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 65%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-label-md">
+<span class="text-on-surface">Professional Services</span>
+<span class="text-on-surface-variant">+12%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-surface-variant" style="width: 40%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-label-md">
+<span class="text-on-surface">Hardware OEM</span>
+<span class="text-error">-4%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error" style="width: 15%"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 p-4 rounded-lg bg-primary/10 border border-primary/20">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<div>
+<p class="text-on-surface font-label-md font-bold">Predictive Alert</p>
+<p class="text-on-surface-variant text-label-sm mt-1 leading-relaxed">High demand variance detected in SaaS Enterprise for Q3. Recommend increasing capacity buffers by 12%.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Row -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-card-gap">
+<!-- Growth Projections by Segment (Left) -->
+<div class="glass-card rounded-xl p-inner-padding">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-on-surface">Growth by Segment</h3>
+<button class="text-primary text-label-md font-medium flex items-center gap-1">
+              Details <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/10 text-center">
+<div class="text-label-sm text-on-surface-variant uppercase mb-2">Enterprise</div>
+<div class="text-headline-md text-primary font-bold">+34%</div>
+<div class="text-label-sm text-primary/60 mt-1">YoY Proj.</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/10 text-center">
+<div class="text-label-sm text-on-surface-variant uppercase mb-2">Mid-Market</div>
+<div class="text-headline-md text-secondary font-bold">+18%</div>
+<div class="text-label-sm text-secondary/60 mt-1">YoY Proj.</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/10 text-center">
+<div class="text-label-sm text-on-surface-variant uppercase mb-2">SMB</div>
+<div class="text-headline-md text-on-surface-variant font-bold">+9%</div>
+<div class="text-label-sm text-on-surface-variant/40 mt-1">YoY Proj.</div>
+</div>
+</div>
+<!-- Visual representation of segments scaling -->
+<div class="mt-8 flex items-end gap-2 h-32 px-4">
+<div class="flex-1 bg-primary/20 rounded-t-lg relative" style="height: 100%">
+<div class="absolute inset-x-0 top-0 h-1 bg-primary rounded-full"></div>
+</div>
+<div class="flex-1 bg-secondary/20 rounded-t-lg relative" style="height: 65%">
+<div class="absolute inset-x-0 top-0 h-1 bg-secondary rounded-full"></div>
+</div>
+<div class="flex-1 bg-surface-variant/20 rounded-t-lg relative" style="height: 40%">
+<div class="absolute inset-x-0 top-0 h-1 bg-surface-variant rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- ML Prediction Engine (Right) -->
+<div class="space-y-4">
+<div class="flex justify-between items-center px-1">
+<h3 class="font-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">psychology</span>
+              ML Prediction Engine
+            </h3>
+<span class="bg-primary/20 text-primary text-label-sm px-2 py-0.5 rounded-full uppercase">Live Engine</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="glass-card p-4 rounded-xl border-l-4 border-primary">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+<span class="font-label-md">Seasonality Detected</span>
+</div>
+<p class="text-on-surface font-medium leading-snug">Expecting a 15% surge in transaction volume during Q4.</p>
+<div class="mt-4 text-label-sm text-on-surface-variant">Confidence: <span class="text-on-surface">High (88%)</span></div>
+</div>
+<div class="glass-card p-4 rounded-xl border-l-4 border-error">
+<div class="flex items-center gap-2 mb-2 text-error">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<span class="font-label-md">Retention Anomaly</span>
+</div>
+<p class="text-on-surface font-medium leading-snug">AI predicts a 2% churn risk increase in EMEA segment.</p>
+<div class="mt-4 text-label-sm text-on-surface-variant">Confidence: <span class="text-on-surface">Med (64%)</span></div>
+</div>
+<div class="glass-card p-4 rounded-xl border-l-4 border-secondary">
+<div class="flex items-center gap-2 mb-2 text-secondary">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+<span class="font-label-md">Network Effect</span>
+</div>
+<p class="text-on-surface font-medium leading-snug">New integration launch may accelerate SMB growth by 4%.</p>
+<div class="mt-4 text-label-sm text-on-surface-variant">Confidence: <span class="text-on-surface">High (91%)</span></div>
+</div>
+<div class="glass-card p-4 rounded-xl border-l-4 border-primary/40">
+<div class="flex items-center gap-2 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+<span class="font-label-md">Margin Efficiency</span>
+</div>
+<p class="text-on-surface font-medium leading-snug">Cloud optimization expected to lift profit margins by 1.2%.</p>
+<div class="mt-4 text-label-sm text-on-surface-variant">Confidence: <span class="text-on-surface">Very High (95%)</span></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+    // Simple hover interactions for charts or interactive elements
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-2px)';
+        card.style.transition = 'transform 0.2s ease-out, box-shadow 0.2s ease-out';
+        card.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 0 15px rgba(6, 182, 212, 0.1)';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+        card.style.boxShadow = 'none';
+      });
+    });
+  </script>
+</body></html>
